@@ -1,0 +1,237 @@
+@import 'bootstrap/scss/bootstrap';
+// ============================================
+// Bootstrap
+// ============================================
+@import 'bootstrap/scss/bootstrap';
+
+// ============================================
+// Variables de la marca (estética HoyTocamos)
+// ============================================
+:root {
+    --ht-dark: #0d0d12;
+    --ht-dark-2: #15151d;
+    --ht-magenta: #e6007e;
+    --ht-magenta-soft: #ff3d9a;
+    --ht-yellow: #ffe600;
+    --ht-cyan: #00e0d0;
+}
+
+// ============================================
+// Base
+// ============================================
+body {
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    background-color: #f6f4ef;
+    color: #1a1a1a;
+}
+
+// ============================================
+// Hero con degradado y glow
+// ============================================
+.ht-hero {
+    background:
+        radial-gradient(circle at 80% 20%, rgba(230, 0, 126, 0.45), transparent 55%),
+        radial-gradient(circle at 10% 80%, rgba(0, 224, 208, 0.25), transparent 50%),
+        linear-gradient(135deg, var(--ht-dark) 0%, var(--ht-dark-2) 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+.ht-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.03) 0px,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 12px
+    );
+    pointer-events: none;
+}
+.ht-hero h1 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 40px rgba(230, 0, 126, 0.5);
+}
+
+// ============================================
+// Badge live con puntito pulsante
+// ============================================
+.ht-badge-live {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: rgba(255, 230, 0, 0.12);
+    color: var(--ht-yellow);
+    border: 1px solid rgba(255, 230, 0, 0.4);
+    padding: .35rem .9rem;
+    border-radius: 999px;
+    font-size: .8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+.ht-badge-live .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ht-yellow);
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .4; transform: scale(.8); }
+}
+
+// ============================================
+// Botones personalizados
+// ============================================
+.btn-ht-primary {
+    background: var(--ht-magenta);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: .75rem 1.75rem;
+    border-radius: 999px;
+    transition: all .2s ease;
+    box-shadow: 0 8px 24px rgba(230, 0, 126, 0.35);
+
+    &:hover {
+        background: var(--ht-magenta-soft);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(230, 0, 126, 0.5);
+    }
+}
+.btn-ht-ghost {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    font-weight: 500;
+    padding: .75rem 1.75rem;
+    border-radius: 999px;
+    transition: all .2s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border-color: #fff;
+    }
+}
+
+// ============================================
+// Tarjetas de evento (ht-card)
+// ============================================
+.ht-card {
+    border: none;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+    transition: transform .25s ease, box-shadow .25s ease;
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 6px;
+        background: linear-gradient(90deg, var(--ht-magenta), var(--ht-yellow));
+    }
+    &:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 40px rgba(230, 0, 126, 0.18);
+    }
+}
+
+// ============================================
+// Badge oscuro estilo fecha
+// ============================================
+.ht-date-badge {
+    display: inline-block;
+    background: var(--ht-dark);
+    color: #fff;
+    padding: .3rem .8rem;
+    border-radius: 8px;
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+// ============================================
+// Acento magenta
+// ============================================
+.ht-venue {
+    color: var(--ht-magenta);
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+// ============================================
+// Noticias estilo post-it
+// ============================================
+.ht-news {
+    background: #fff;
+    border-radius: 14px;
+    border-left: 6px solid var(--ht-cyan);
+    padding: 1.25rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: transform .2s ease;
+
+    &:hover {
+        transform: translateX(4px);
+    }
+    &:nth-child(2) {
+        border-left-color: var(--ht-yellow);
+    }
+}
+
+// ============================================
+// Títulos de sección
+// ============================================
+.ht-section-title {
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: var(--ht-magenta);
+        border-radius: 2px;
+        margin-top: .5rem;
+    }
+}
+
+// ============================================
+// Bloque CTA oscuro
+// ============================================
+.ht-cta {
+    background:
+        radial-gradient(circle at 85% 15%, rgba(230, 0, 126, 0.55), transparent 55%),
+        radial-gradient(circle at 15% 85%, rgba(0, 224, 208, 0.35), transparent 50%),
+        linear-gradient(135deg, var(--ht-dark) 0%, var(--ht-dark-2) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(
+            -45deg,
+            rgba(255, 255, 255, 0.025) 0px,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px,
+            transparent 14px
+        );
+        pointer-events: none;
+    }
+}
