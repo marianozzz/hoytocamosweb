@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +16,39 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Usuario de prueba
+           User::factory()->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+                'password'  => 123456789,
+            ]);
+        
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // 1. Roles y permisos (primero, para que exista el rol admin)
+        $this->call([
+            RolePermissionSeeder::class,
+        ]);
+
+        // 2. Usuario administrador
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@hoytocamos.com'],
+            [
+                'name' => 'Administrador',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        if (!$admin->hasRole('admin')) {
+            $admin->assignRole('admin');
+        }
+
+        // 3. Datos geográficos y musicales
+        $this->call([
+            GenreSeeder::class,
+            CountrySeeder::class,
+            ProvinceSeeder::class,
+            CitySeeder::class,
         ]);
     }
 }

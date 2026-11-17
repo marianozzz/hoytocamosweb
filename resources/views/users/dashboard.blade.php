@@ -15,10 +15,18 @@
                     Hola, {{ auth()->user()->name }}.<br>
                     <span style="color: var(--ht-yellow);">Bienvenido</span> a HoyTocamos.
                 </h1>
-                <p class="mb-0" style="max-width: 560px; color: rgba(255,255,255,.75);">
+                <p class="mb-4" style="max-width: 560px; color: rgba(255,255,255,.75);">
                     Desde aquí podrás publicar tus fechas, guardar eventos favoritos
                     y gestionar tu perfil de banda u organizador.
                 </p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{{ route('profile.index') }}" class="btn btn-ht-primary">
+                        <i class="bi bi-person-circle me-1"></i> Ver mi perfil
+                    </a>
+                    <a href="#" class="btn btn-ht-ghost disabled">
+                        <i class="bi bi-plus-lg me-1"></i> Publicar evento (Pronto)
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -49,16 +57,18 @@
                 </div>
             </div>
             <div class="col">
-                <div class="ht-card h-100">
-                    <div class="card-body p-4 text-center">
-                        <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
-                             style="width: 64px; height: 64px; background: rgba(255,230,0,.18);">
-                            <i class="bi bi-person-badge fs-3" style="color: #b8a400;"></i>
+                <a href="{{ route('profile.index') }}" class="text-decoration-none">
+                    <div class="ht-card h-100">
+                        <div class="card-body p-4 text-center">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                                 style="width: 64px; height: 64px; background: rgba(255,230,0,.18);">
+                                <i class="bi bi-person-badge fs-3" style="color: #b8a400;"></i>
+                            </div>
+                            <h5 class="fw-bold mb-2 text-dark">Mi perfil</h5>
+                            <p class="text-muted small mb-0">Tu banda u organizador</p>
                         </div>
-                        <h5 class="fw-bold mb-2">Mi perfil</h5>
-                        <p class="text-muted small mb-0">Tu banda u organizador</p>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
 

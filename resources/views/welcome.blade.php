@@ -6,20 +6,16 @@
 
     <title>HoyTocamos — El calendario de la escena under</title>
 
-    {{-- Bootstrap 5.3 estable vía CDN (para ver el resultado ya) --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    {{-- Fuente con carácter (opcional, se puede quitar) --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 
-    {{-- Si compilas con Vite, descomenta esta línea y borra el <link> del CDN --}}
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
     <style>
@@ -38,7 +34,6 @@
             color: #1a1a1a;
         }
 
-        /* Hero con degradado y glow */
         .ht-hero {
             background:
                 radial-gradient(circle at 80% 20%, rgba(230, 0, 126, 0.45), transparent 55%),
@@ -48,7 +43,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .ht-hero::after {
             content: "";
             position: absolute;
@@ -62,7 +56,6 @@
             );
             pointer-events: none;
         }
-
         .ht-hero h1 {
             font-weight: 700;
             letter-spacing: -0.02em;
@@ -83,7 +76,6 @@
             text-transform: uppercase;
             letter-spacing: .08em;
         }
-
         .ht-badge-live .dot {
             width: 8px;
             height: 8px;
@@ -91,13 +83,11 @@
             background: var(--ht-yellow);
             animation: pulse 1.5s infinite;
         }
-
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: .4; transform: scale(.8); }
         }
 
-        /* Botones personalizados */
         .btn-ht-primary {
             background: var(--ht-magenta);
             border: none;
@@ -130,7 +120,6 @@
             border-color: #fff;
         }
 
-        /* Tarjetas de evento */
         .ht-card {
             border: none;
             border-radius: 18px;
@@ -170,7 +159,6 @@
             font-size: .9rem;
         }
 
-        /* Noticias estilo post-it */
         .ht-news {
             background: #fff;
             border-radius: 14px;
@@ -184,7 +172,6 @@
         }
         .ht-news:nth-child(2) { border-left-color: var(--ht-yellow); }
 
-        /* Sección headers */
         .ht-section-title {
             font-weight: 700;
             letter-spacing: -0.01em;
@@ -201,7 +188,6 @@
             margin-top: .5rem;
         }
 
-        /* CTA final */
         .ht-cta {
             background:
                 radial-gradient(circle at 85% 15%, rgba(230, 0, 126, 0.55), transparent 55%),
@@ -209,7 +195,6 @@
                 linear-gradient(135deg, var(--ht-dark) 0%, var(--ht-dark-2) 100%);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-
         .ht-cta::after {
             content: "";
             position: absolute;
@@ -246,7 +231,7 @@
                         <a class="nav-link" href="#eventos">Eventos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#noticias">Noticias</a>
+                        <a class="nav-link" href="{{ route('posts.index') }}">Noticias</a>
                     </li>
                 </ul>
 
@@ -341,7 +326,6 @@
             </div>
 
             <div class="row g-4">
-                {{-- Evento 1 --}}
                 <div class="col-md-4">
                     <div class="ht-card h-100">
                         <div class="card-body p-4">
@@ -359,7 +343,6 @@
                     </div>
                 </div>
 
-                {{-- Evento 2 --}}
                 <div class="col-md-4">
                     <div class="ht-card h-100">
                         <div class="card-body p-4">
@@ -377,7 +360,6 @@
                     </div>
                 </div>
 
-                {{-- Evento 3 --}}
                 <div class="col-md-4">
                     <div class="ht-card h-100">
                         <div class="card-body p-4">
@@ -397,36 +379,47 @@
             </div>
         </section>
 
-        {{-- Noticias (maqueta estática) --}}
+        {{-- Noticias (desde la BD) --}}
         <section id="noticias" class="mb-5">
-            <h2 class="ht-section-title h3 mb-0">Noticias de la escena</h2>
-            <p class="text-muted mb-4 mt-3">Novedades, convocatorias y espacios nuevos.</p>
+            <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
+                <div>
+                    <h2 class="ht-section-title h3 mb-0">Noticias de la escena</h2>
+                    <p class="text-muted mb-0 mt-3">Novedades, convocatorias y espacios nuevos.</p>
+                </div>
+                <a href="{{ route('posts.index') }}" class="btn btn-sm btn-outline-dark rounded-pill">
+                    Ver todas <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
 
             <div class="row g-3">
-                <div class="col-md-6">
-                    <div class="ht-news h-100">
-                        <h6 class="fw-bold mb-1">Nuevo espacio para tocadas en el centro</h6>
-                        <p class="text-muted small mb-2">Publicado hace 2 días</p>
-                        <p class="mb-0">
-                            El antiguo mercado municipal abre sus puertas a eventos
-                            culturales independientes.
-                        </p>
+                @forelse ($posts as $post)
+                    <div class="col-md-6">
+                        <div class="ht-news h-100">
+                            <h6 class="fw-bold mb-1">{{ $post->title }}</h6>
+                            <p class="text-muted small mb-2">
+                                {{ $post->published_at?->format('d M Y') }}
+                            </p>
+                            <p class="mb-2">
+                                {{ $post->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($post->body), 120) }}
+                            </p>
+                            <a href="{{ route('posts.show', $post->slug) }}"
+                               class="small fw-semibold text-decoration-none"
+                               style="color: var(--ht-magenta);">
+                                Leer más <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="ht-news h-100">
-                        <h6 class="fw-bold mb-1">Convocatoria abierta para bandas emergentes</h6>
-                        <p class="text-muted small mb-2">Publicado hace 5 días</p>
-                        <p class="mb-0">
-                            Buscan proyectos para grabar un split de vinilo.
-                            Recepción de maquetas hasta fin de mes.
-                        </p>
+                @empty
+                    <div class="col-12">
+                        <div class="ht-news">
+                            <p class="text-muted mb-0">Aún no hay noticias publicadas.</p>
+                        </div>
                     </div>
-                </div>
+                @endforelse
             </div>
         </section>
 
-        {{-- CTA: Forma parte de la comunidad --}}
+        {{-- CTA --}}
         <section class="ht-cta rounded-4 overflow-hidden position-relative my-5">
             <div class="row g-0 align-items-center">
                 <div class="col-lg-7 p-4 p-lg-5 position-relative" style="z-index: 1;">
@@ -496,7 +489,6 @@
         </div>
     </footer>
 
-    {{-- Bootstrap JS estable --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     @livewireScripts
