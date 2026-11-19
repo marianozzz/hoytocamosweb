@@ -53,53 +53,51 @@ new class extends Component
 ?>
 
 <div>
-    <div class="row g-3">
-        {{-- País --}}
-        <div class="col-md-4">
-            <label for="country_id" class="form-label fw-semibold">País</label>
-            <select id="country_id" name="country_id" wire:model.live="country_id"
-                    class="form-select @error('country_id') is-invalid @enderror">
-                <option value="">Sin definir</option>
-                @foreach ($countries as $country)
-                    <option value="{{ $country->id }}">{{ $country->name }}</option>
-                @endforeach
-            </select>
-            @error('country_id')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+    {{-- País --}}
+    <div class="mb-3">
+        <label for="country_id" class="form-label fw-semibold">País</label>
+        <select id="country_id" name="country_id" wire:model.live="country_id"
+                class="form-select @error('country_id') is-invalid @enderror">
+            <option value="">Sin definir</option>
+            @foreach ($countries as $country)
+                <option value="{{ $country->id }}">{{ $country->name }}</option>
+            @endforeach
+        </select>
+        @error('country_id')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
 
-        {{-- Provincia --}}
-        <div class="col-md-4">
-            <label for="province_id" class="form-label fw-semibold">Provincia</label>
-            <select id="province_id" name="province_id" wire:model.live="province_id"
-                    class="form-select @error('province_id') is-invalid @enderror"
-                    @if (empty($provinces)) disabled @endif>
-                <option value="">Sin definir</option>
-                @foreach ($provinces as $province)
-                    <option value="{{ $province->id }}">{{ $province->name }}</option>
-                @endforeach
-            </select>
-            @error('province_id')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+    {{-- Provincia --}}
+    <div class="mb-3">
+        <label for="province_id" class="form-label fw-semibold">Provincia</label>
+        <select id="province_id" name="province_id" wire:model.live="province_id"
+                class="form-select @error('province_id') is-invalid @enderror"
+                @if (empty($provinces)) disabled @endif>
+            <option value="">Sin definir</option>
+            @foreach ($provinces as $province)
+                <option value="{{ $province->id }}">{{ $province->name }}</option>
+            @endforeach
+        </select>
+        @error('province_id')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
 
-        {{-- Ciudad --}}
-        <div class="col-md-4">
-            <label for="city_id" class="form-label fw-semibold">Ciudad</label>
-            <select id="city_id" name="city_id" wire:model.live="city_id"
-                    class="form-select @error('city_id') is-invalid @enderror"
-                    @if (empty($cities)) disabled @endif>
-                <option value="">Sin definir</option>
-                @foreach ($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                @endforeach
-            </select>
-            @error('city_id')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+    {{-- Ciudad --}}
+    <div class="mb-3">
+        <label for="city_id" class="form-label fw-semibold">Ciudad</label>
+        <select id="city_id" name="city_id" wire:model.live="city_id"
+                class="form-select @error('city_id') is-invalid @enderror"
+                @if (empty($cities)) disabled @endif>
+            <option value="">Sin definir</option>
+            @foreach ($cities as $city)
+                <option value="{{ $city->id }}">{{ $city->name }}</option>
+            @endforeach
+        </select>
+        @error('city_id')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
     </div>
 
     {{-- Inputs ocultos para el formulario padre --}}

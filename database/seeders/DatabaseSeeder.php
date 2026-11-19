@@ -49,6 +49,10 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             ProvinceSeeder::class,
             CitySeeder::class,
+            EventTypeSeeder::class,
+            VenueSeeder::class,
+            SocialPlatformSeeder::class,
+            EntityTypeSeeder::class,
         ]);
     }
 }

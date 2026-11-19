@@ -7,6 +7,10 @@ use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\PublicPostController;
+use \App\Http\Controllers\Admin\EventController;
+use \App\Http\Controllers\Admin\VenueController;
+use \App\Http\Controllers\Admin\SocialPlatformController;
+use \App\Http\Controllers\Admin\BandController;
 
 // Portada pública
 Route::get('/', function () {
@@ -43,14 +47,25 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/login', [AdminAuthController::class, 'login'])->name('login.attempt');
 });
 
+
 // Panel de administración (protegido por admin)
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     })->name('dashboard');
 
-      // CRUD de posts (blog)
-    Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
+    // CRUD de posts (blog)
+    Route::resource('posts', PostController::class);
+
+    // CRUD de eventos (calendario)
+    Route::resource('events', EventController::class);
+
+     // CRUD de lugares (venues)
+    Route::resource('venues', VenueController::class);
+
+    Route::resource('social-platforms', SocialPlatformController::class);
+
+    Route::resource('bands', BandController::class);
 
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

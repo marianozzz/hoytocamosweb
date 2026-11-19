@@ -47,9 +47,33 @@
 
                 {{-- Calendario --}}
                 <li class="nav-item">
-                    <a href="#"
-                       class="nav-link text-white d-flex align-items-center {{ request()->routeIs('admin.calendar.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.events.index') }}"
+                       class="nav-link text-white d-flex align-items-center {{ request()->routeIs('admin.events.*') ? 'active' : '' }}">
                         <i class="bi bi-calendar-event me-2"></i> Calendario
+                    </a>
+                </li>
+
+                {{-- Lugares --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.venues.index') }}"
+                       class="nav-link text-white d-flex align-items-center {{ request()->routeIs('admin.venues.*') ? 'active' : '' }}">
+                        <i class="bi bi-geo-alt me-2"></i> Lugares
+                    </a>
+                </li>
+
+                {{-- Bandas --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.bands.index') }}"
+                       class="nav-link text-white d-flex align-items-center {{ request()->routeIs('admin.bands.*') ? 'active' : '' }}">
+                        <i class="bi bi-music-note-list me-2"></i> Bandas
+                    </a>
+                </li>
+
+                {{-- Plataformas sociales --}}
+                <li class="nav-item">
+                    <a href="{{ route('admin.social-platforms.index') }}"
+                       class="nav-link text-white d-flex align-items-center {{ request()->routeIs('admin.social-platforms.*') ? 'active' : '' }}">
+                        <i class="bi bi-share me-2"></i> Plataformas sociales
                     </a>
                 </li>
             </ul>
